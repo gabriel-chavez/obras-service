@@ -30,9 +30,9 @@ namespace obras_service.Controllers
                 FechaSolicitud = DateTime.Now,
                 Descripcion = request.descripcion                
             };
-            obraService.CrearSolicitud(obras);
-            
-            return Ok(new Result(true, "Solicitud registrada correctamente"));
+            var obras1=obraService.CrearSolicitud(obras);
+            return Ok(obras1);
+            // return Ok(new Result(true, "Solicitud registrada correctamente"));
         }
         [HttpPost]
         [Route("actualizar")]
@@ -54,6 +54,13 @@ namespace obras_service.Controllers
         {
             var solicitudes = obraService.ObtenerSolicitud(id);
             return Ok(new Result<Obras>(solicitudes, true, "Solicitudes listadas correctamente"));
+        }
+        [HttpPost]
+        [Route("revertir")]
+        public IActionResult Revertir([FromBody] ObrasActualizarEstadoDto request)
+        {
+            Obras obras = obraService.Revertir(request.IdSolicitud);
+            return Ok(obras);
         }
     }
 }

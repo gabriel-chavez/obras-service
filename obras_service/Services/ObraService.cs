@@ -25,11 +25,11 @@ namespace obras_service.Services
         }
      
 
-        public int CrearSolicitud(Obras obras)
+        public Obras CrearSolicitud(Obras obras)
         {
             _contextDatabase.Obras.Add(obras);
             _contextDatabase.SaveChanges();
-            return obras.IdSolicitud;
+            return obras;
         }
 
         public List<Obras> ListarSolicitudes()
@@ -40,6 +40,15 @@ namespace obras_service.Services
         public Obras ObtenerSolicitud(int id)
         {
             return _contextDatabase.Obras.Where(x => x.IdSolicitud == id).FirstOrDefault();
+        }
+
+        public Obras Revertir(int id)
+        {
+            var obras = _contextDatabase.Obras.Where(x => x.IdSolicitud == id).FirstOrDefault();
+            _contextDatabase.Obras.Remove(obras);
+            _contextDatabase.SaveChanges();
+            return obras;
+
         }
     }
 }

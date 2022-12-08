@@ -5,9 +5,12 @@ namespace obras_service.Services
 {
     public interface IObraService
     {
-        int CrearSolicitud(Obras obras);
+
+        Obras CrearSolicitud(Obras obras);
         List<Obras> ListarSolicitudes();
         Obras ObtenerSolicitud(int id);
         Obras ActualizarSolicitud(int id, int idSolicitudAlmacen);
+
+        Obras Revertir(int id);
     }
 }
