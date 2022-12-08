@@ -14,14 +14,14 @@ namespace obras_service.Services
             this._contextDatabase = contextDatabase;
         }
 
-        public bool ActualizarSolicitud(int id, int idSolicitudAlmacen)
+        public Obras ActualizarSolicitud(int id, int idSolicitudAlmacen)
         {
             var obras = _contextDatabase.Obras.Where(x => x.IdSolicitud == id).FirstOrDefault();
             obras.EstadoSolicitud = "ENTREGADO";
             obras.IdSolicitudAlmacen= idSolicitudAlmacen;            
             _contextDatabase.Obras.Update(obras);
             _contextDatabase.SaveChanges();
-            return true;
+            return obras;
         }
      
 

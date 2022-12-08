@@ -1,0 +1,22 @@
+version: "3.5"
+
+services:
+  ms-vuelos:
+    image: gabrielchavezr/obras-service:v1
+    ports:
+      - "8089:80"
+      - "4439:443"
+    environment:
+      mysql:cn: "server=database-mysql;database=obras_db;user=root;password=Gabriel123"
+      #ConnectionStrings:mysql: "server=database-mysql;port=3307;database=AeronaveDb;user=root;password=Vuelos123"
+    depends_on:
+      - database-mysql
+  database-mysql:
+    image: mysql:8.0.26
+    container_name: database-mysql
+    restart: always
+    environment:
+    - MYSQL_ROOT_PASSWORD=Gabriel123
+    ports:
+    - 3307:3306
+    - 33061:33060

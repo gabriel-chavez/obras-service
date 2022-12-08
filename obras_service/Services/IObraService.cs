@@ -8,6 +8,6 @@ namespace obras_service.Services
         int CrearSolicitud(Obras obras);
         List<Obras> ListarSolicitudes();
         Obras ObtenerSolicitud(int id);
-        bool ActualizarSolicitud(int id, int idSolicitudAlmacen);
+        Obras ActualizarSolicitud(int id, int idSolicitudAlmacen);
     }
 }
